@@ -5,11 +5,15 @@ import { AppRoutingModule }             from './app-routing.module';
 
 import { AppComponent }                 from './app.component';
 import { BoardComponent }               from './board/board.component';
+import { TaskFormComponent }            from './task-form/task-form.component';
+import { TaskCardComponent }            from './board/task-card/task-card.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    BoardComponent
+    BoardComponent,
+    TaskFormComponent,
+    TaskCardComponent
   ],
   imports: [
     BrowserModule,

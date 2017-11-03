@@ -1,0 +1,22 @@
+.task-card{
+    margin: auto auto 8px auto;
+    border: 1px solid #ddd;
+    padding: 12px;
+    border-radius: 6px;
+    align-self: center;
+    max-width: 300px;
+    background-color: #f6f6f6;
+
+    &:hover{
+        box-shadow: 2px 2px 8px rgba(0,0,0,.2);
+        transition: box-shadow .5s;
+    }
+
+    h3{
+        font-size: 16px;
+    }
+
+    p{
+        font-size: 12px;
+    }
+}    

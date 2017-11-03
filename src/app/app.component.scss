@@ -1,0 +1,18 @@
+.container-fluid{
+    padding: 0;
+    .navbar{
+        .navbar-brand{
+            color: #fff;
+        }
+        .btn-new-task{
+            position: absolute;
+            margin: 0;
+            right:12px;
+        }
+    }
+
+    .content{
+        background-color: #fafafa;
+        width:100%;
+    }
+}
