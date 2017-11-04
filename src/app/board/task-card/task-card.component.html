@@ -1,6 +1,27 @@
 <div class="task-card">
-	<h3>
-		Título da tarefa
-	</h3>
-	<p>DESCRIÇÃO</p>
+	<div class="row">
+		<h3>
+			{{task.title}}
+		</h3>
+	</div>
+	<div class="row priority">
+		<span>Prioridade:</span> {{task.priority}}
+	</div>
+	<div class="row">
+		<div class="col-xs-12">
+			<p>{{task.description}}</p>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-6">
+			<a [routerLink]="['/task-form',task._id]" class="btn btn-default btn-sm">
+				Editar
+			</a>
+		</div>
+		<div class="col-sm-6">
+			<button type="button" class="btn btn-default btn-sm" (click)="deleteTask(task)">
+				Deletar
+			</button>
+		</div>
+	</div>
 </div>

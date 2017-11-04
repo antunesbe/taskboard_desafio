@@ -1,3 +1,25 @@
-<p>
-    task-form
-</p>
+<h1>{{isEditing?'Editar Tarefa':'Criar Tarefa'}}</h1>
+<div class="col-xs-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-3 form-wrapper">
+    <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
+        <div class="form-group">
+        <label for="title">Título</label>
+        <input type="text" class="form-control" id="title" formControlName='title' maxlength="50">
+        </div>
+        <div class="form-group">
+            <label for="priority">Prioridade</label>
+            <select type="text" class="form-control" id="priority" formControlName='priority'>
+                <option>1</option>
+                <option>2</option>
+                <option>3</option>
+                <option>4</option>
+                <option>5</option>
+            </select>
+        </div>
+        <div class="form-group">
+        <label for="description">Descrição</label>
+        <textarea type="text" class="form-control" id="description" formControlName='description' rows="4" maxlength="300"></textarea>
+
+        </div>
+        <button type="submit" class="btn btn-primary">{{isEditing?'Editar':'Criar'}}</button>
+    </form>
+</div>

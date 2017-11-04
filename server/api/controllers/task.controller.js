@@ -1,7 +1,7 @@
 var Task = require('../models/task.model.js');
 
 exports.create = function(req, res) {
-    if(!req.body.content) {
+    if(!req.body) {
         res.status(400).send({message: "Tarefa não pode estar vazia"});
     }
     var task = new Task({
@@ -9,16 +9,16 @@ exports.create = function(req, res) {
         description: req.body.description,
         attachments: req.body.attachments,
         priority: req.body.priority,
-        owner: req.body.owner
+        status: req.body.status,
+        owner: req.body.owner,
+        created_at: req.body.created_at,
+        updated_at: req.body.updated_at,
     });
-
     task.save(function(err, data) {
-        console.log(data);
         if(err) {
             console.log(err);
             res.status(500).send({message: "Não foi possível salvar a tarefa. Tente novamente"});
         } else {
-            console.log(data);
             res.status(200).send(data);
         }
     });
@@ -29,6 +29,7 @@ exports.findAll = function(req, res) {
         if(err){
             res.status(500).send({message: "Não foi possível buscar as tarefas. Tente novamente"});
         }else{
+            console.log(tasks);
             res.status(200).send(tasks);
         }
     })
@@ -45,8 +46,18 @@ exports.findOne = function(req, res) {
 };
 
 exports.update = function(req, res) {
-    console.log(req.body);
-    Task.findByIdAndUpdate(req.params.taskId, req.body.task,(err,tasks)=>{
+    let task = new Task({
+        title: req.body.title,
+        description: req.body.description,
+        attachments: req.body.attachments,
+        priority: req.body.priority,
+        status: req.body.status,
+        owner: req.body.owner,
+        created_at: req.body.created_at,
+        updated_at: req.body.updated_at
+    });
+    console.log("UPDATE", task);
+    Task.findByIdAndUpdate(req.params.taskId, req.body,(err,tasks)=>{
         if(err){
             console.log(err);
             res.status(500).send({message: "Não foi possível atualizar a tarefa. Tente novamente"});
@@ -58,6 +69,7 @@ exports.update = function(req, res) {
 };
 
 exports.delete = function(req, res) {
+    console.log(req.params);
     Task.findByIdAndRemove(req.params.taskId,(err,data)=>{
         if(err){
             res.status(500).send({message: "Não foi possível deletar a tarefa. Tente novamente"});

@@ -1,3 +1,5 @@
+import { Task } from './../shared/task.model';
+import { TaskService } from './../shared/task.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,10 +8,28 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./board.component.scss']
 })
 export class BoardComponent implements OnInit {
+  public taskList: Task[] = [];
+  constructor(
+    private taskService: TaskService
+  ) {
 
-  constructor() { }
+  }
 
   ngOnInit() {
+    this.taskService.getTasks()
+          .subscribe(res=>{
+            console.log(res);
+            this.taskList = res;
+          },error=>{
+            //TODO ERROR MESSAGE
+          })
+  }
+
+  public taskDeleted = (event: any) =>{
+    console.log(event);
+    this.taskList = this.taskList.filter(task =>{
+      return task._id != event._id;
+    });
   }
 
 }

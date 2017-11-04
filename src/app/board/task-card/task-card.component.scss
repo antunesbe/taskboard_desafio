@@ -7,6 +7,25 @@
     max-width: 300px;
     background-color: #f6f6f6;
 
+    .row{
+        margin: 0;
+
+        div{
+            display: flex;
+
+            button{
+                margin: auto;
+            }
+        }
+    }
+
+    .priority{
+        font-size: 12px;
+        span{
+            font-weight: 500;
+        }
+    }
+
     &:hover{
         box-shadow: 2px 2px 8px rgba(0,0,0,.2);
         transition: box-shadow .5s;

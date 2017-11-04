@@ -1,21 +1,19 @@
 <h1>Tarefas</h1>
 <div class="row task-board">
-	<div class="col-sm-4">
+	<div class="col-sm-4 offset-sm-2">
 		<h2>To do</h2>
 		<div class="task-list">
-			<task-card></task-card>
-		</div>
-	</div>
-	<div class="col-sm-4">
-		<h2>Doing</h2>
-		<div class="task-list">
-				
+			<div *ngFor="let task of taskList" >
+				<task-card *ngIf="task.status=='todo'" [task]="task" (deleted)="taskDeleted($event)"></task-card>
+			</div>
 		</div>
 	</div>
 	<div class="col-sm-4">
 		<h2>Done</h2>
 		<div class="task-list">
-				
+			<div *ngFor="let task of taskList" >
+				<task-card *ngIf="task.status=='done'" [task]="task" (deleted)="taskDeleted($event)"></task-card>
+			</div>
 		</div>
 	</div>
 </div>
