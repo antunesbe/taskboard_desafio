@@ -16,11 +16,11 @@ export class HttpClientService {
     }
 
     public post = (url: string, data:any, headers?:any) =>{
-        return this.http.post(url, headers);
+        return this.http.post(url, data, headers);
     }
 
     public put = (url: string, data:any, headers?:any) =>{
-        return this.http.put(url, headers);
+        return this.http.put(url, data, headers);
     }
 
     public delete = (url: string, headers?:any) =>{

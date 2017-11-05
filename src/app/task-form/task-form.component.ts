@@ -35,7 +35,8 @@ export class TaskFormComponent implements OnInit {
 				owner: new FormControl(task.owner),
 				status: new FormControl(task.status),
 				created_at: new FormControl(task.created_at),
-				updated_at: new FormControl(task.updated_at)
+				updated_at: new FormControl(task.updated_at),
+				developed_by: new FormControl(task.developed_by)
 			});
 		});
 	  }
@@ -56,7 +57,6 @@ export class TaskFormComponent implements OnInit {
 					.subscribe(res=>{
 						//GO TO LISTA
 						this.router.navigateByUrl('/board');
-						console.log(res);
 					}, error =>{
 						//todo: colocar erro
 					})

@@ -5,7 +5,7 @@
 			<a *ngIf="authService.loggedIn()" class="navbar-item" [routerLink]="['/board','new']">Tarefas</a>
 			<a *ngIf="!authService.loggedIn()" class="navbar-item" [routerLink]="['/login']">Login</a>
 			<a *ngIf="authService.loggedIn()" class="navbar-item" href="#" (click)="logout()">Logout</a>
-			<a *ngIf="authService.loggedIn()"class="btn btn-success navbar-item" [routerLink]="['/task-form','new']">Nova Tarefa</a>
+			<a *ngIf="authService.loggedIn()" class="btn btn-success navbar-item" [routerLink]="['/task-form','new']">Nova Tarefa</a>
 		</div>
 	</nav>
 	<div class="content">

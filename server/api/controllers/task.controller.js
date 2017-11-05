@@ -13,6 +13,7 @@ exports.create = function(req, res) {
         owner: req.body.owner,
         created_at: req.body.created_at,
         updated_at: req.body.updated_at,
+        developed_by: req.body.developed_by
     });
     task.save(function(err, data) {
         if(err) {
@@ -25,11 +26,10 @@ exports.create = function(req, res) {
 };
 
 exports.findAll = function(req, res) {
-    Task.find((err,tasks)=>{
+    Task.find({}).sort('-priority').exec((err,tasks)=>{
         if(err){
             res.status(500).send({message: "Não foi possível buscar as tarefas. Tente novamente"});
         }else{
-            console.log(tasks);
             res.status(200).send(tasks);
         }
     })
@@ -54,9 +54,9 @@ exports.update = function(req, res) {
         status: req.body.status,
         owner: req.body.owner,
         created_at: req.body.created_at,
-        updated_at: req.body.updated_at
+        updated_at: new Date(),
+        developed_by: req.body.developed_by
     });
-    console.log("UPDATE", task);
     Task.findByIdAndUpdate(req.params.taskId, req.body,(err,tasks)=>{
         if(err){
             console.log(err);

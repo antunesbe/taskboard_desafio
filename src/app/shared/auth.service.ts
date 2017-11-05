@@ -9,7 +9,7 @@ import { tokenNotExpired }  from 'angular2-jwt';
 @Injectable()
 export class AuthService {
     public authToken;
-    public email;
+    private email;
     private options;
 
     constructor(
@@ -36,6 +36,13 @@ export class AuthService {
 
         return this.options;
     }
+
+    public getLoggedEmail = () => {
+        let loggedEmail = (this.email)?this.email:localStorage.getItem('email');
+        console.log(loggedEmail);
+        return loggedEmail;
+    } 
+
     public logout = () => {
         localStorage.clear();
         this.authToken = '';

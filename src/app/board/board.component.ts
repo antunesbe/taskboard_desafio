@@ -32,4 +32,8 @@ export class BoardComponent implements OnInit {
     });
   }
 
+  public taskChanged = (event:any) => {
+
+  }
+
 }

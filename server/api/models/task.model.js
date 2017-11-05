@@ -9,7 +9,8 @@ var taskSchema = new Schema({
   owner: String,
   status: String,
   created_at: Date,
-  updated_at: Date
+  updated_at: Date,
+  developed_by: String
 });
 
 

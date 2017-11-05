@@ -1,8 +1,10 @@
 <div class="task-card">
 	<div class="row">
-		<h3>
-			{{task.title}}
-		</h3>
+		<div class="col-sm-12 title">
+			<h3>
+				{{task.title}}
+			</h3>
+		</div>
 	</div>
 	<div class="row priority">
 		<span>Prioridade:</span> {{task.priority}}
@@ -12,15 +14,30 @@
 			<p>{{task.description}}</p>
 		</div>
 	</div>
-	<div class="row">
-		<div class="col-sm-6">
-			<a [routerLink]="['/task-form',task._id]" class="btn btn-default btn-sm">
-				Editar
-			</a>
+	<div class="row action-made">
+		<div class="col-sm-12">
+			Criado por: {{task.owner}}
 		</div>
-		<div class="col-sm-6">
-			<button type="button" class="btn btn-default btn-sm" (click)="deleteTask(task)">
+	</div>
+	<div class="row action-made" *ngIf="task.developed_by">
+		<div class="col-sm-12">
+			Desenvolvido por: {{task.developed_by}}
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-sm-4">
+			<button type="button" class="btn btn-danger btn-sm" (click)="deleteTask(task)">
 				Deletar
+			</button>
+		</div>
+		<div class="col-sm-4">
+			<button [routerLink]="['/task-form',task._id]" class="btn btn-info btn-sm">
+				Editar
+			</button>
+		</div>
+		<div class="col-sm-4">
+			<button type="button" class="btn btn-success btn-sm" (click)="changeStatus(task)">
+				{{(task.status=='todo')?'Done':'To do'}}
 			</button>
 		</div>
 	</div>

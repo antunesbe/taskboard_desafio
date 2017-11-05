@@ -3,7 +3,7 @@
     <form [formGroup]="taskForm" (ngSubmit)="saveTask()">
         <div class="form-group">
         <label for="title">Título</label>
-        <input type="text" class="form-control" id="title" formControlName='title' maxlength="50">
+        <input type="text" class="form-control" id="title" formControlName='title' maxlength="30">
         </div>
         <div class="form-group">
             <label for="priority">Prioridade</label>
@@ -20,6 +20,6 @@
         <textarea type="text" class="form-control" id="description" formControlName='description' rows="4" maxlength="300"></textarea>
 
         </div>
-        <button type="submit" class="btn btn-primary">{{isEditing?'Editar':'Criar'}}</button>
+        <button type="submit" class="btn btn-success">{{isEditing?'Editar':'Criar'}}</button>
     </form>
 </div>

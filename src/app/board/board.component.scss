@@ -9,7 +9,8 @@ app-board{
 
     .task-list{
         display: flex;
-        flex-direction: column;
+        flex-direction:row;
+        flex-wrap: wrap;
         align-content: center;
     }
 }

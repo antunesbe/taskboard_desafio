@@ -4,6 +4,7 @@ export class Task {
     description: string;
     attachments: any[];
     status: string = 'todo';
+    developed_by: string;
     priority: Number;
     owner: string;
     created_at: Date = new Date();
@@ -17,6 +18,7 @@ export class Task {
             this.description = data.description;
             this.attachments = data.attachments;
             this.priority = data.priority;
+            this.developed_by = data.developed_by;
             this.owner = data.owner;
             this.status = (data.status)?data.status:'todo';
             this.created_at = (data.created_at)?data.created_at:new Date();

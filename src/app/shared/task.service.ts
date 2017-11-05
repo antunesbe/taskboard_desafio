@@ -1,3 +1,4 @@
+import { AuthService } from './auth.service';
 import { HttpClientService } from './httpClient.service';
 import { AlertService } from './alert.service';
 import { Task } from './task.model';
@@ -12,7 +13,8 @@ import 'rxjs/add/observable/throw';
 export class TaskService {
     constructor(
         private httpClient: HttpClientService,
-        private alertService: AlertService
+        private alertService: AlertService,
+        private authService: AuthService
     ){ }
 
     public getTasks = (): Observable<Task[]> => {
@@ -41,22 +43,23 @@ export class TaskService {
                 return task;
             })
             .catch(error =>{
+                console.log(error.json());
                 this.alertService.error("Falha ao recuperar tarefa", "Tente novamente");
-                console.error(error);
                 return Observable.throw(error);
             });
     }
 
     public createTask = (task:Task):Observable<Task> => {
-        console.log(task);
+        task.owner = this.authService.getLoggedEmail();
+        
         return this.httpClient.post(`/api/tasks/`, task)
             .map(response => {
                 this.alertService.success("Tarefa criada!");
                 return response.json() as Task;
             })
             .catch(error =>{
+                console.log(error.json());
                 this.alertService.error("Falha ao criar tarefa", "Tente novamente");
-                console.error(error);
                 return Observable.throw(error);
             });
     }
@@ -70,7 +73,7 @@ export class TaskService {
             })
             .catch(error =>{
                 this.alertService.error("Falha ao atualizar tarefa", "Tente novamente");
-                console.error(error);
+                console.log(error.json());
                 return Observable.throw(error);
             });
     }
@@ -84,7 +87,7 @@ export class TaskService {
             })
             .catch(error =>{
                 this.alertService.error("Falha ao deletar tarefa", "Tente novamente");
-                console.error(error);
+                console.log(error.json());
                 return Observable.throw(false);
             });
     }
