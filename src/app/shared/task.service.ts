@@ -28,6 +28,7 @@ export class TaskService {
                 return tasks;
             })
             .catch(error =>{
+                console.log(error.json());
                 this.alertService.error("Falha ao recuperar tarefas", "Tente novamente");
                 return Observable.throw(error);
             });

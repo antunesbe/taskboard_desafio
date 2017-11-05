@@ -4,7 +4,9 @@ import { RouterModule, Routes }               from '@angular/router';
 
 import { BoardComponent }                     from './board/board.component';
 import { TaskFormComponent }                  from './task-form/task-form.component';
+import { LoginComponent }                     from './login/login.component';
 import { TaskResolver }                       from './task-form/task-form.resolver';
+import { AuthGuard }                          from './shared/auth.guard';
 
 const routes: Routes = [
     { 
@@ -14,23 +16,21 @@ const routes: Routes = [
     },
     { 
         path: 'board', 
-        component: BoardComponent
+        component: BoardComponent,
+        canActivate: [AuthGuard]
     },
     { 
         path: 'task-form/:id', 
         component: TaskFormComponent,
         resolve: {
             task: TaskResolver
-        }
+        },
+        canActivate: [AuthGuard]
     },
-        // {   
-        //     path: 'scholarship-form/:id', 
-        //     component: ScholarshipFormComponent,
-        //     resolve: {
-        //         scholarship: ScholarshipResolver
-        //     },
-        //     canActivate: [AuthGuard]
-        // },
+    {
+        path: 'login',
+        component: LoginComponent
+    },
     { path: '**', redirectTo: '/board', pathMatch: 'full' }
 ];
 

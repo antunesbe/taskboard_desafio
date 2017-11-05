@@ -1,7 +1,12 @@
 <div class="container-fluid">	
 	<nav class="navbar navbar-expand-lg navbar-light bg-dark">
 		<a class="navbar-brand" [routerLink]="['/board']">Quadro de Tarefas</a>
-		<a class="btn btn-success btn-new-task" [routerLink]="['/task-form','new']">Nova Tarefa</a>
+		<div class="nav-left">
+			<a *ngIf="authService.loggedIn()" class="navbar-item" [routerLink]="['/board','new']">Tarefas</a>
+			<a *ngIf="!authService.loggedIn()" class="navbar-item" [routerLink]="['/login']">Login</a>
+			<a *ngIf="authService.loggedIn()" class="navbar-item" href="#" (click)="logout()">Logout</a>
+			<a *ngIf="authService.loggedIn()"class="btn btn-success navbar-item" [routerLink]="['/task-form','new']">Nova Tarefa</a>
+		</div>
 	</nav>
 	<div class="content">
 		<router-outlet></router-outlet>

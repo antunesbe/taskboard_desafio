@@ -4,10 +4,15 @@
         .navbar-brand{
             color: #fff;
         }
-        .btn-new-task{
-            position: absolute;
-            margin: 0;
-            right:12px;
+        .nav-left{
+            width: 100%;
+            display: flex;
+            justify-content: flex-end;
+            align-content: center;
+            .navbar-item{
+                color:#fff;
+                margin: auto 6px;
+            }
         }
     }
 
